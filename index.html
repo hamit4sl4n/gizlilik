@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik Politikası — Tesbihat</title>
+<meta name="description" content="Tesbihat (zikirmatik, dua ve Esmâ-i Hüsna) uygulamasının gizlilik politikası. Uygulama kişisel veri toplamaz; tüm veriler cihazda kalır.">
+<meta name="theme-color" content="#0C0C10">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hamit4sl4n.github.io/gizlilik/">
+<!--
+  YAYIN ÖNCESİ DEĞİŞTİRİLMESİ GEREKEN TEK ŞEY:
+    Yukarıdaki canonical adres → gerçek GitHub Pages adresiniz.
+
+  E-posta ve tarih dolduruldu. §4'teki onay (UMP) paragrafı artık uygulamadaki
+  gerçek akışı anlatıyor: onay verilmezse reklam isteği hiç açılmaz
+  (lib/services/riza_servisi.dart + Reklamlar.rizaVeBaslat). Akış kaldırılırsa
+  o bölüm de güncellenmelidir.
+-->
+<style>
+  :root{
+    --altin:#FFD700; --altin-koyu:#C9A400; --altin-yumusak:#FFE9A8;
+    --zemin:#0C0C10; --zemin-acik:#16161C; --yuzey:#17171D; --yuzey-acik:#20202A;
+    --kenarlik:#2C2C36; --metin:#F4F4F7; --solgun:#A6A6B2; --silik:#7A7A86;
+    --yesil:#4ADE80;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; padding:0;
+    background:var(--zemin);
+    background-image:radial-gradient(1100px 520px at 50% -12%, #1C1C24 0%, rgba(12,12,16,0) 68%);
+    color:var(--metin);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    font-size:17px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  .kap{max-width:860px;margin:0 auto;padding:0 22px 80px}
+
+  header{padding:64px 0 32px;border-bottom:1px solid var(--kenarlik)}
+  .amblem{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--altin);font-weight:700;margin-bottom:18px;
+  }
+  .amblem::before{
+    content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--altin),transparent);
+  }
+  h1{
+    font-size:clamp(1.75rem,5vw,2.5rem);line-height:1.2;
+    margin:0 0 14px;font-weight:700;letter-spacing:-.02em;
+  }
+  h1 span{color:var(--altin)}
+  .alt-bilgi{color:var(--solgun);font-size:.94rem;margin:0}
+  .alt-bilgi strong{color:var(--metin);font-weight:600}
+
+  .ozet{
+    margin:34px 0 10px;padding:24px 26px;
+    background:linear-gradient(180deg,rgba(255,215,0,.09),rgba(255,215,0,.02));
+    border:1px solid rgba(255,215,0,.30);
+    border-left:3px solid var(--altin);
+    border-radius:14px;
+  }
+  .ozet h2{
+    margin:0 0 12px;font-size:1.06rem;color:var(--altin);
+    letter-spacing:.02em;text-transform:none;border:0;padding:0;
+  }
+  .ozet p{margin:0 0 10px;font-size:.98rem}
+  .ozet p:last-child{margin-bottom:0}
+
+  nav.icindekiler{
+    margin:36px 0 8px;padding:20px 24px;
+    background:var(--yuzey);border:1px solid var(--kenarlik);border-radius:14px;
+  }
+  nav.icindekiler h2{
+    margin:0 0 12px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--silik);border:0;padding:0;
+  }
+  nav.icindekiler ol{margin:0;padding-left:22px;columns:2;column-gap:30px}
+  nav.icindekiler li{margin:3px 0;font-size:.94rem}
+  nav.icindekiler a{color:var(--solgun);text-decoration:none;border-bottom:1px solid transparent}
+  nav.icindekiler a:hover{color:var(--altin);border-bottom-color:rgba(255,215,0,.4)}
+
+  section{margin-top:44px;scroll-margin-top:20px}
+  h2{
+    font-size:1.3rem;margin:0 0 16px;padding-bottom:10px;
+    border-bottom:1px solid var(--kenarlik);font-weight:650;letter-spacing:-.01em;
+  }
+  h2 .numara{
+    display:inline-block;min-width:1.9em;color:var(--altin-koyu);
+    font-variant-numeric:tabular-nums;font-weight:700;
+  }
+  h3{font-size:1.03rem;margin:26px 0 8px;color:var(--altin-yumusak);font-weight:600}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:24px}
+  li{margin:7px 0}
+  strong{color:#fff;font-weight:600}
+  code{
+    background:var(--yuzey-acik);border:1px solid var(--kenarlik);border-radius:5px;
+    padding:1px 6px;font-size:.86em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  a{color:var(--altin);text-decoration:none;border-bottom:1px solid rgba(255,215,0,.32)}
+  a:hover{border-bottom-color:var(--altin)}
+
+  .tablo-sar{overflow-x:auto;margin:0 0 18px;border:1px solid var(--kenarlik);border-radius:12px}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;table-layout:fixed}
+  th,td{padding:12px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--kenarlik);overflow-wrap:break-word}
+  /* İlk sütun kısa etiketler taşır: sabit oran verip metnin nefes almasını
+     sağlıyoruz. `nowrap` kullanılmaz çünkü taşma yatay kaydırma doğurur ve
+     ikinci sütunu telefonda okunamaz hâle getirir. */
+  th:first-child,td:first-child{width:36%}
+  thead th{
+    background:var(--yuzey-acik);color:var(--altin-yumusak);font-weight:600;
+    font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  }
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.017)}
+
+  .kutu{
+    margin:20px 0;padding:18px 22px;border-radius:12px;
+    background:var(--yuzey);border:1px solid var(--kenarlik);
+  }
+  .kutu.yesil{border-left:3px solid var(--yesil)}
+  .kutu p:last-child{margin-bottom:0}
+
+  .rozet{
+    display:inline-block;padding:3px 10px;border-radius:999px;font-size:.74rem;
+    font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    background:rgba(74,222,128,.14);color:var(--yesil);border:1px solid rgba(74,222,128,.32);
+  }
+
+  #english{direction:ltr}
+  #english p,#english li{font-size:.96rem}
+
+  footer{
+    margin-top:60px;padding-top:26px;border-top:1px solid var(--kenarlik);
+    color:var(--silik);font-size:.88rem;
+  }
+  footer a{color:var(--solgun)}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    nav.icindekiler ol{columns:1}
+    header{padding-top:44px}
+    .ozet{padding:20px}
+    .kap{padding-left:18px;padding-right:18px}
+    table{font-size:.88rem}
+    th,td{padding:10px 12px}
+    th:first-child,td:first-child{width:40%}
+  }
+  @media print{
+    body{background:#fff;color:#000;font-size:11pt}
+    .kap{max-width:none;padding:0}
+    nav.icindekiler{display:none}
+    h2{border-bottom:1px solid #999}
+    a{color:#000;border:0}
+    .ozet,.kutu,table{background:#fff;border-color:#999}
+    th{background:#eee;color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="kap">
+
+<header>
+  <div class="amblem">Tesbihat · Gizlilik Politikası</div>
+  <h1>Gizlilik <span>Politikası</span></h1>
+  <p class="alt-bilgi">
+    Uygulama: <strong>Tesbihat</strong> — zikirmatik, dua ve Esmâ-i Hüsna<br>
+    Paket adı: <code>com.hamit.tesbihat</code> · Platform: Android<br>
+    Son güncelleme: <strong>19 Eylül 2026</strong>
+  </p>
+</header>
+
+<div class="ozet">
+  <h2>Kısaca</h2>
+  <p>
+    Tesbihat <strong>hiçbir kişisel verinizi toplamaz</strong>. Adınızı, e-postanızı,
+    konumunuzu veya ne okuduğunuzu bilmeyiz. Zikir sayılarınız, favorileriniz ve
+    ayarlarınız yalnızca <strong>kendi cihazınızda</strong> saklanır; uygulamanın
+    sunucusu yoktur ve bu veriler hiçbir yere gönderilmez.
+  </p>
+  <p>
+    Tek istisna <strong>reklamlardır</strong>: reklamlar Google AdMob aracılığıyla
+    gösterilir ve Google, reklam sunmak için cihazınızın reklam kimliği gibi bazı
+    teknik verileri kendi politikaları çerçevesinde işleyebilir. Ayrıntısı §4'te.
+  </p>
+</div>
+
+<nav class="icindekiler" aria-label="İçindekiler">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#kapsam">Kapsam</a></li>
+    <li><a href="#cihaz">Cihazınızda saklanan veriler</a></li>
+    <li><a href="#toplanmayan">Toplamadığımız veriler</a></li>
+    <li><a href="#reklam">Reklamlar ve Google AdMob</a></li>
+    <li><a href="#izinler">İzinler ve amaçları</a></li>
+    <li><a href="#yedek">Yedekleme</a></li>
+    <li><a href="#paylasma">Paylaşma</a></li>
+    <li><a href="#cocuk">Çocukların gizliliği</a></li>
+    <li><a href="#silme">Verilerinizi silme</a></li>
+    <li><a href="#degisiklik">Politika değişiklikleri</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+    <li><a href="#english">English summary</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="kapsam">
+  <h2><span class="numara">1.</span>Kapsam</h2>
+  <p>
+    Bu politika, <strong>4SL4N Studio</strong> tarafından geliştirilen
+    <strong>Tesbihat</strong> adlı Android uygulaması
+    (<code>com.hamit.tesbihat</code>) için geçerlidir. Uygulamayı kullanarak bu
+    politikada açıklanan veri uygulamalarını kabul etmiş olursunuz.
+  </p>
+  <p>
+    Uygulama tamamen <strong>çevrimdışı</strong> çalışır: internet bağlantısı
+    olmadan zikirmatik, dua, Esmâ-i Hüsna, kütüphane ve istatistik özelliklerinin
+    tamamı kullanılabilir. İnternet yalnızca reklamların yüklenmesi için gerekir.
+  </p>
+</section>
+
+<section id="cihaz">
+  <h2><span class="numara">2.</span>Cihazınızda saklanan veriler</h2>
+  <p>
+    Aşağıdaki bilgiler cihazınızın uygulamaya özel depolama alanında tutulur.
+    Bu veriler cihazınızdan <strong>çıkmaz</strong>, tarafımıza ulaşmaz ve
+    üçüncü taraflarla paylaşılmaz.
+  </p>
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>Veri</th><th>Ne işe yarar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Zikir sayıları</td><td>Günlük toplamlar, genel toplam, kayıt geçmişi ve gün serisi (streak) — istatistik ekranı için.</td></tr>
+        <tr><td>Hedefler ve ilerleme</td><td>Seçtiğiniz hedefler, son kullanılan program ve kaldığınız adım.</td></tr>
+        <tr><td>Favoriler</td><td>İşaretlediğiniz dualar, sureler ve Esmâ-i Hüsna isimleri.</td></tr>
+        <tr><td>Okuma konumları</td><td>Bir metni nerede bıraktığınız ve son okuduğunuz içerikler.</td></tr>
+        <tr><td>Uygulama ayarları</td><td>Titreşim, yazı boyutu, satır aralığı, hatırlatıcı saati, ekranı açık tutma, ses tuşuyla sayma tercihleri.</td></tr>
+        <tr><td>Otomatik yedek dosyası</td><td>Yukarıdaki verilerin JSON kopyası; cihazınızdaki <code>Tesbihat/tesbihat-otomatik.json</code> dosyasında tutulur.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="kutu yesil">
+    <p><span class="rozet">Sunucu yok</span></p>
+    <p>
+      Uygulamanın kendine ait bir sunucusu veya veritabanı yoktur. Dolayısıyla
+      sakladığınız verilerin bir kopyası bizde bulunmaz.
+    </p>
+  </div>
+</section>
+
+<section id="toplanmayan">
+  <h2><span class="numara">3.</span>Toplamadığımız veriler</h2>
+  <p>Aşağıdakilerin hiçbiri toplanmaz, saklanmaz veya iletilmez:</p>
+  <ul>
+    <li>Ad, soyad, e-posta, telefon numarası veya başka bir kimlik bilgisi</li>
+    <li>Konum bilgisi</li>
+    <li>Kişi listesi, takvim, çağrı geçmişi</li>
+    <li>Fotoğraf, kamera veya mikrofon erişimi</li>
+    <li>Cihazdaki dosyalar (yalnızca sizin seçtiğiniz yedek dosyası okunur/yazılır)</li>
+    <li>Hangi duaları okuduğunuz, hangi zikirleri çektiğiniz dâhil hiçbir kullanım verisi</li>
+    <li>Çökme raporları veya kullanım analitiği (uygulamada hiçbir analitik aracı yoktur)</li>
+  </ul>
+  <p>
+    Uygulamada kullanıcı hesabı, giriş, çerez veya izleme (tracking) teknolojisi
+    bulunmaz.
+  </p>
+</section>
+
+<section id="reklam">
+  <h2><span class="numara">4.</span>Reklamlar ve Google AdMob</h2>
+  <p>
+    Uygulamanın geliştirilmesini desteklemek için ekranın altında banner reklam
+    gösterilir. Reklamlar <strong>Google Mobile Ads (AdMob)</strong> yazılım
+    geliştirme kiti aracılığıyla sunulur.
+  </p>
+  <p>Bu kapsamda Google, reklamları sunmak, sınırlamak ve ölçmek için şunları işleyebilir:</p>
+  <ul>
+    <li>Cihazınızın <strong>reklam kimliği (Advertising ID)</strong></li>
+    <li>IP adresi ve yaklaşık konum (şehir düzeyinde)</li>
+    <li>Cihaz ve uygulama bilgileri (işletim sistemi sürümü, uygulama sürümü, dil)</li>
+    <li>Reklamla etkileşim bilgileri (gösterim, tıklama)</li>
+  </ul>
+  <div class="kutu">
+    <p>
+      <strong>Bu veriler bize ulaşmaz.</strong> Google, verileri kendi gizlilik
+      politikası uyarınca işler:
+      <a href="https://policies.google.com/technologies/ads" rel="noopener">Google reklam teknolojileri</a>
+      ·
+      <a href="https://policies.google.com/privacy" rel="noopener">Google Gizlilik Politikası</a>
+    </p>
+  </div>
+  <h3>Reklam kişiselleştirmesini kapatmak</h3>
+  <p>
+    Android'de <em>Ayarlar → Google → Reklamlar</em> yolundan reklam kimliğini
+    sıfırlayabilir veya silebilirsiniz. Kimliği sildiğinizde size yine reklam
+    gösterilir, ancak kişiselleştirme sınırlanır. Uygulamada şu an reklamsız
+    kullanım seçeneği bulunmuyor; eklendiğinde bu bölüm güncellenecektir.
+  </p>
+  <h3>Bölgesel onay</h3>
+  <p>
+    Yasal olarak gerekli olan bölgelerde (Avrupa Ekonomik Alanı, Birleşik
+    Krallık, İsviçre) reklam gösterilmeden önce Google'ın onay ekranı (UMP)
+    sunulur. Onay vermeden <strong>hiçbir reklam isteği gönderilmez</strong>;
+    onay vermemeniz hâlinde reklam gösterilmez ve uygulamanın tüm işlevleri
+    kullanılmaya devam eder.
+  </p>
+  <p>
+    Kararınızı istediğiniz zaman <em>Ayarlar → Gizlilik seçenekleri</em>
+    yolundan değiştirebilirsiniz. Bu politikaya da uygulama içinden
+    <em>Ayarlar → Gizlilik politikası</em> ile ulaşabilirsiniz.
+  </p>
+</section>
+
+<section id="izinler">
+  <h2><span class="numara">5.</span>İzinler ve amaçları</h2>
+  <p>
+    Uygulama yalnızca işlevi için gereken izinleri ister. Hiçbiri veri toplamak
+    amacıyla kullanılmaz.
+  </p>
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>İzin</th><th>Neden istendiği</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bildirim gönderme</td>
+          <td>Günlük zikir hatırlatıcısı ve telafi bildirimini gönderebilmek için. İzin vermezseniz yalnızca hatırlatıcı çalışmaz; uygulamanın kalanı normal çalışır.</td>
+        </tr>
+        <tr>
+          <td>Yeniden başlatmayı algılama</td>
+          <td>Telefon kapanıp açıldığında günlük hatırlatıcıyı yeniden kurabilmek için. Bu izin olmadan hatırlatıcı sessizce kaybolurdu.</td>
+        </tr>
+        <tr>
+          <td>Titreşim</td>
+          <td>Zikir sayarken dokunsal geri bildirim vermek için.</td>
+        </tr>
+        <tr>
+          <td>Ekranı uyanık tutma</td>
+          <td>Zikirmatik ekranındayken ekranın kararmaması için. Ayarlardan kapatılabilir.</td>
+        </tr>
+        <tr>
+          <td>İnternet ve ağ durumu</td>
+          <td>Yalnızca reklamların yüklenmesi için. Uygulamanın çevrimdışı işlevleri bu izne bağlı değildir.</td>
+        </tr>
+        <tr>
+          <td>Reklam kimliği (AdMob ekler)</td>
+          <td>Google'ın reklamları sunabilmesi ve ölçebilmesi için; Google Mobile Ads kitaplığı tarafından tanımlanır.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="yedek">
+  <h2><span class="numara">6.</span>Yedekleme</h2>
+  <p>Uygulamada üç ayrı yedekleme mekanizması vardır ve üçü de cihazda kalır:</p>
+  <ul>
+    <li>
+      <strong>Otomatik yedek:</strong> Uygulama her açılışta verinizi
+      <code>Tesbihat/tesbihat-otomatik.json</code> dosyasına sessizce yazar.
+      Amaç, telefon kaybolduğunda son bilinen durumun elde kalmasıdır.
+    </li>
+    <li>
+      <strong>Elle yedek:</strong> "Yedek al" düğmesine bastığınızda bir JSON
+      dosyası oluşturulur ve <em>kaydedilecek yeri siz seçersiniz</em> (Dosyalar,
+      Drive, e-posta vb.). Dosyayı nereye koyduğunuzun ve kiminle paylaştığınızın
+      sorumluluğu size aittir.
+    </li>
+    <li>
+      <strong>İşletim sistemi yedeği:</strong> Android'in kendi yedekleme
+      servisi (veya iOS'ta iCloud), uygulama verilerinizi sizin cihaz
+      ayarlarınıza göre hesabınıza yedekleyebilir. Bu, işletim sisteminin
+      davranışıdır; <em>Ayarlar → Google → Yedekleme</em> yolundan yönetilir.
+    </li>
+  </ul>
+</section>
+
+<section id="paylasma">
+  <h2><span class="numara">7.</span>Paylaşma</h2>
+  <p>
+    Uygulamadaki paylaş düğmeleri (günün âyeti/hadisi metni ve istatistik özet
+    kartı görseli) <strong>yalnızca siz dokunduğunuzda</strong> çalışır.
+    Paylaşımı başlattığınızda içerik, seçtiğiniz uygulamaya (mesajlaşma, sosyal
+    medya vb.) işletim sistemi aracılığıyla iletilir. Gönderimin kapsamı ve
+    hedefi tamamen sizin kontrolünüzdedir; uygulama bu içeriği kendiliğinden
+    hiçbir yere göndermez.
+  </p>
+</section>
+
+<section id="cocuk">
+  <h2><span class="numara">8.</span>Çocukların gizliliği</h2>
+  <p>
+    Uygulama 13 yaş altı çocuklara yönelik değildir ve hiçbir kullanıcıdan
+    kişisel veri toplamaz. Zikir ve istatistik verileri yalnızca cihazda
+    tutulduğu için çocuklara ait bir veri tarafımızda bulunmaz. Ebeveynler,
+    cihazdaki verileri uygulama ayarlarından veya uygulamayı kaldırarak
+    silebilir.
+  </p>
+</section>
+
+<section id="silme">
+  <h2><span class="numara">9.</span>Verilerinizi silme</h2>
+  <p>Verileriniz bizde değil cihazınızda olduğu için silme işlemi tamamen sizin elinizdedir:</p>
+  <ul>
+    <li><strong>Zikir verilerini sıfırla:</strong> İstatistik ekranındaki ilgili düğme.</li>
+    <li><strong>Tüm verileri sil:</strong> Ayarlar → tüm verileri sil.</li>
+    <li><strong>Her şeyi kaldır:</strong> Uygulamayı cihazdan kaldırdığınızda uygulamaya ait tüm yerel veriler silinir.</li>
+  </ul>
+  <p>
+    Bizden silme talebinde bulunmanıza gerek yoktur, çünkü tarafımızda saklanan
+    bir kopya bulunmaz. Yine de sorularınız için §11'den bize ulaşabilirsiniz.
+  </p>
+</section>
+
+<section id="degisiklik">
+  <h2><span class="numara">10.</span>Politika değişiklikleri</h2>
+  <p>
+    Bu politika, uygulamaya yeni bir özellik eklendiğinde veya yasal gereklilikler
+    değiştiğinde güncellenebilir. Güncel sürüm her zaman bu sayfada yayımlanır ve
+    yukarıdaki <strong>"Son güncelleme"</strong> tarihi değişir. Önemli
+    değişikliklerde uygulama içinde bilgilendirme yapılır.
+  </p>
+</section>
+
+<section id="iletisim">
+  <h2><span class="numara">11.</span>İletişim</h2>
+  <p>
+    Bu uygulama <strong>4SL4N Studio</strong> tarafından geliştirilmiştir.
+    Gizlilikle ilgili soru, talep veya şikâyetleriniz için:
+  </p>
+  <p>
+    <strong>E-posta:</strong>
+    <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a>
+  </p>
+</section>
+
+<section id="english">
+  <h2><span class="numara">12.</span>English summary</h2>
+  <p>
+    <strong>Tesbihat</strong> (package <code>com.hamit.tesbihat</code>, Android) is a
+    dhikr-counter, prayer and Beautiful Names of Allah app that works fully offline.
+  </p>
+  <ul>
+    <li>
+      <strong>We do not collect any personal data.</strong> There is no account,
+      no sign-in, no analytics SDK and no server. All data (dhikr counts, goals,
+      favourites, reading positions and settings) is stored only on your device.
+    </li>
+    <li>
+      <strong>Advertising.</strong> The app shows banner ads through Google
+      Mobile Ads (AdMob). Google may process your device's advertising ID, IP
+      address, device information and ad interactions under its own
+      <a href="https://policies.google.com/privacy" rel="noopener">privacy policy</a>.
+      That data is not accessible to the developer. You can reset or delete your
+      advertising ID in <em>Android Settings → Google → Ads</em>.
+    </li>
+    <li>
+      <strong>Permissions</strong> are used only for their stated purpose:
+      notifications (daily dhikr reminder), boot detection (restoring the
+      reminder), vibration (haptic feedback), wake lock (keeping the screen on
+      while counting) and internet (loading ads only).
+    </li>
+    <li>
+      <strong>Backups</strong> stay on your device. The automatic backup writes a
+      JSON file inside the app's own storage; manual backups are saved wherever
+      you choose. Your operating system's own backup service may include app data
+      according to your device settings.
+    </li>
+    <li>
+      <strong>Sharing</strong> only happens when you tap a share button; the
+      content goes to the app you select.
+    </li>
+    <li>
+      <strong>Deleting your data:</strong> clear it in the app's settings or
+      uninstall the app — since we hold no copy, no data-removal request to us is
+      necessary.
+    </li>
+  </ul>
+  <p>Contact: <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    <strong>Tesbihat</strong> · <strong>4SL4N Studio</strong> · Gizlilik Politikası ·
+    Son güncelleme: 19 Eylül 2026
+  </p>
+  <p>
+    Uygulama paketi: <code>com.hamit.tesbihat</code> · Bu sayfa Google Play'in
+    gizlilik politikası gerekliliğini karşılamak üzere herkese açık olarak
+    yayımlanmıştır.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
