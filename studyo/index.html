@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik Politikası — 4SL4N Studio</title>
+<meta name="description" content="4SL4N Studio'nun tüm uygulamaları için geçerli gizlilik politikası: hesap yok, kişisel veri toplanmaz, veriler cihazda kalır. Reklamlar ve izinler dâhil tam açıklama.">
+<meta name="theme-color" content="#07080a">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hamit4sl4n.github.io/gizlilik/studyo/">
+<!--
+  STÜDYO GENELİ POLİTİKA — uygulamaya özel politikalardan ayrıdır.
+
+  · Bu sayfa stüdyonun **tamamını** kapsar ve vitrinden bağlanır.
+  · Tesbihat'a özel ayrıntılar kendi sayfasındadır: /gizlilik/
+  · Kaynak: tesbihat deposu → docs/studyo/index.html, yayın:
+    `bash scripts/gizlilik_yayinla.sh` (iki sayfayı birlikte gönderir).
+
+  Sayfa TEK DOSYADIR (harici css/js/font yok): gizlilik sayfası, yanındaki
+  dosyalar yüklenmese bile okunabilmelidir. Yazı tipi bu yüzden sistem
+  yığınıdır; renkler stüdyo kimliğinden alınmıştır.
+-->
+<style>
+  :root{
+    --gece:#07080a; --gece-ust:#0d0f13; --gece-kutu:#12151a;
+    --kenar:rgba(237,230,215,.13); --kenar-kuvvetli:rgba(237,230,215,.26);
+    --kagit:#ece5d6; --kagit-soluk:#96907f; --kagit-silik:#6d6a60;
+    --pirinc:#c89a4e; --pirinc-parlak:#eec982; --iyi:#7fb069;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--gece);
+    background-image:radial-gradient(1100px 520px at 50% -14%, #14181f 0%, rgba(7,8,10,0) 68%);
+    color:var(--kagit);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    font-size:16.5px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .kap{max-width:820px;margin:0 auto;padding:0 22px 88px}
+
+  header{padding:66px 0 30px;border-bottom:1px solid var(--kenar)}
+  .amblem{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--pirinc);margin-bottom:20px;
+  }
+  .amblem::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--pirinc),transparent)}
+  h1{font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.18;margin:0 0 14px;font-weight:650;letter-spacing:-.025em}
+  h1 em{font-style:normal;color:var(--pirinc)}
+  .alt-bilgi{color:var(--kagit-soluk);font-size:.93rem;margin:0}
+  .alt-bilgi strong{color:var(--kagit);font-weight:600}
+  .alt-bilgi code{color:var(--kagit-soluk)}
+
+  .ozet{
+    margin:34px 0 8px;padding:24px 26px;border-radius:12px;
+    background:linear-gradient(180deg,rgba(200,154,78,.10),rgba(200,154,78,.02));
+    border:1px solid rgba(200,154,78,.30);border-left:3px solid var(--pirinc);
+  }
+  .ozet h2{margin:0 0 12px;font-size:1rem;color:var(--pirinc-parlak);border:0;padding:0;letter-spacing:.01em}
+  .ozet p{margin:0 0 10px;font-size:.97rem}
+  .ozet p:last-child{margin-bottom:0}
+
+  nav.icindekiler{
+    margin:34px 0 4px;padding:20px 24px;border-radius:12px;
+    background:var(--gece-kutu);border:1px solid var(--kenar);
+  }
+  nav.icindekiler h2{
+    margin:0 0 12px;font-size:.74rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--kagit-silik);border:0;padding:0;
+  }
+  nav.icindekiler ol{margin:0;padding-left:20px;columns:2;column-gap:32px}
+  nav.icindekiler li{margin:4px 0;font-size:.9rem}
+  nav.icindekiler a{color:var(--kagit-soluk);text-decoration:none;border-bottom:1px solid transparent}
+  nav.icindekiler a:hover{color:var(--pirinc-parlak);border-bottom-color:rgba(200,154,78,.45)}
+
+  section{margin-top:42px;scroll-margin-top:20px}
+  h2{
+    font-size:1.24rem;margin:0 0 16px;padding-bottom:10px;font-weight:650;
+    border-bottom:1px solid var(--kenar);letter-spacing:-.012em;
+  }
+  h2 .numara{
+    display:inline-block;min-width:1.9em;color:var(--pirinc);font-variant-numeric:tabular-nums;
+  }
+  h3{font-size:1rem;margin:24px 0 8px;color:var(--pirinc-parlak);font-weight:600}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 14px;padding-left:22px}
+  li{margin:7px 0}
+  strong{color:#fff;font-weight:600}
+  code{
+    background:var(--gece-ust);border:1px solid var(--kenar);border-radius:5px;
+    padding:1px 6px;font-size:.85em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--kagit-soluk);
+  }
+  a{color:var(--pirinc-parlak);text-decoration:none;border-bottom:1px solid rgba(200,154,78,.35)}
+  a:hover{border-bottom-color:var(--pirinc-parlak)}
+
+  .tablo-sar{overflow-x:auto;margin:0 0 18px;border:1px solid var(--kenar);border-radius:12px}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+  th,td{padding:12px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--kenar);overflow-wrap:break-word}
+  /* İlk sütun kısa etiket taşır: sabit oran verilir ki ikinci sütun nefes alsın.
+     `nowrap` yok — taşma, telefonda okunamayan yatay kaydırma doğurur. */
+  th:first-child,td:first-child{width:34%}
+  thead th{
+    background:var(--gece-ust);color:var(--pirinc-parlak);font-weight:600;
+    font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  }
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even){background:rgba(237,230,215,.018)}
+
+  .kutu{margin:20px 0;padding:18px 22px;border-radius:12px;background:var(--gece-kutu);border:1px solid var(--kenar)}
+  .kutu.yesil{border-left:3px solid var(--iyi)}
+  .kutu p:last-child{margin-bottom:0}
+  .rozet{
+    display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(127,176,105,.14);color:var(--iyi);border:1px solid rgba(127,176,105,.32);
+  }
+
+  #english{direction:ltr}
+  #english p,#english li{font-size:.95rem}
+
+  footer{margin-top:58px;padding-top:26px;border-top:1px solid var(--kenar);color:var(--kagit-silik);font-size:.87rem}
+  footer a{color:var(--kagit-soluk)}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    nav.icindekiler ol{columns:1}
+    header{padding-top:46px}
+    .kap{padding-left:18px;padding-right:18px}
+    .ozet{padding:20px}
+    table{font-size:.87rem}
+    th,td{padding:10px 12px}
+    th:first-child,td:first-child{width:40%}
+  }
+  @media print{
+    body{background:#fff;color:#000;font-size:11pt;background-image:none}
+    .kap{max-width:none;padding:0}
+    nav.icindekiler{display:none}
+    h2{border-bottom:1px solid #999}
+    a{color:#000;border:0}
+    .ozet,.kutu,table{background:#fff;border-color:#999}
+    th{background:#eee;color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="kap">
+
+<header>
+  <div class="amblem">4SL4N Studio · Gizlilik</div>
+  <h1>Gizlilik <em>Politikası</em></h1>
+  <p class="alt-bilgi">
+    Geliştirici: <strong>4SL4N Studio</strong> · Platform: Android<br>
+    Kapsam: stüdyonun yayımladığı <strong>tüm uygulamalar</strong><br>
+    Son güncelleme: <strong>23 Eylül 2026</strong>
+  </p>
+</header>
+
+<div class="ozet">
+  <h2>Kısaca</h2>
+  <p>
+    Uygulamalarımız <strong>hesap açtırmaz, giriş istemez ve kişisel veri toplamaz</strong>.
+    Adınızı, e-postanızı, konumunuzu veya uygulamayı nasıl kullandığınızı bilmeyiz.
+    Uygulamada oluşturduğunuz her şey (kayıtlar, tercihler, ilerleme) yalnızca
+    <strong>kendi cihazınızda</strong> saklanır.
+  </p>
+  <p>
+    Tek istisna <strong>reklamlardır</strong>: ücretsiz uygulamalarda reklamlar Google
+    AdMob üzerinden gösterilir ve Google, reklam sunmak için cihazınızın reklam
+    kimliği gibi bazı teknik verileri kendi politikaları çerçevesinde işleyebilir.
+    Bu veriler bize ulaşmaz. Ayrıntısı §4 ve §5'te.
+  </p>
+</div>
+
+<nav class="icindekiler" aria-label="İçindekiler">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#kapsam">Kapsam ve ilkeler</a></li>
+    <li><a href="#cihaz">Cihazınızda kalan veriler</a></li>
+    <li><a href="#toplanmayan">Toplamadığımız veriler</a></li>
+    <li><a href="#reklam">Reklamlar ve Google AdMob</a></li>
+    <li><a href="#onay">Reklam tercihleri ve bölgesel onay</a></li>
+    <li><a href="#ucuncu">Diğer üçüncü taraflar</a></li>
+    <li><a href="#izinler">İzinler</a></li>
+    <li><a href="#cevrimici">Gelecekteki çevrimiçi özellikler</a></li>
+    <li><a href="#paylasma">Paylaşma ve dışa aktarma</a></li>
+    <li><a href="#cocuk">Çocukların gizliliği</a></li>
+    <li><a href="#silme">Verilerinizi silme</a></li>
+    <li><a href="#degisiklik">Politika değişiklikleri</a></li>
+    <li><a href="#iletisim">İletişim ve uygulama politikaları</a></li>
+    <li><a href="#english">English summary</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="kapsam">
+  <h2><span class="numara">1.</span>Kapsam ve ilkeler</h2>
+  <p>
+    Bu politika, <strong>4SL4N Studio</strong> tarafından geliştirilen ve mağazalarda
+    yayımlanan tüm Android uygulamaları için geçerlidir. Şu anda yayında olan
+    uygulama <strong>Tesbihat</strong>'tır; listeye yeni bir uygulama eklendiğinde
+    bu sayfa güncellenir ve o uygulamanın sayfası §13'te listelenir.
+  </p>
+  <p>
+    Bir uygulamaya özel veri uygulamaları (hangi verinin nerede tutulduğu, hangi
+    iznin neden istendiği) <strong>o uygulamanın kendi politikasında</strong>
+    ayrıntılı olarak yazılıdır. Uygulamaya özel bir konuda iki metin çelişirse
+    <strong>uygulamanın kendi politikası</strong> geçerlidir; bu sayfa stüdyonun
+    tümüne verdiği sözleri toplar.
+  </p>
+  <p>Stüdyonun değişmeyen üç ilkesi vardır:</p>
+  <ul>
+    <li><strong>Hesap yok.</strong> Uygulamalarımız kullanıcı hesabı açmaz, giriş istemez, parola tutmaz.</li>
+    <li><strong>Verin cihazında kalır.</strong> Kişisel veriyi toplamayız; uygulamada oluşturduğunuz içerik sunucularımıza gönderilmez.</li>
+    <li><strong>Gereksiz izin istenmez.</strong> Yalnızca bir özelliğin çalışması için şart olan izin istenir ve reddedildiğinde mümkün olduğunca az işlev kaybı olur.</li>
+  </ul>
+</section>
+
+<section id="cihaz">
+  <h2><span class="numara">2.</span>Cihazınızda kalan veriler</h2>
+  <p>
+    Uygulamayı kullanırken oluşan veriler cihazınızın, uygulamaya özel depolama
+    alanında tutulur. Bu veriler cihazınızdan <strong>çıkmaz</strong>, tarafımıza
+    ulaşmaz ve üçüncü taraflarla paylaşılmaz.
+  </p>
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>Veri türü</th><th>Açıklama</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Uygulama içeriği</td><td>Uygulamada oluşturduğunuz kayıtlar, listeler, favoriler ve ilerleme.</td></tr>
+        <tr><td>Tercihler</td><td>Görünüm, bildirim saati, titreşim, yazı boyutu gibi ayarlar.</td></tr>
+        <tr><td>Yedek dosyaları</td><td>Yedekleme sunan uygulamalarda oluşturulan dosyalar; nerede tutulacağını siz seçersiniz.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="kutu yesil">
+    <p><span class="rozet">Sunucu yok</span></p>
+    <p>
+      Uygulamalarımızın kendine ait bir sunucusu veya veritabanı yoktur. Bu yüzden
+      sakladığınız verilerin bir kopyası bizde bulunmaz; kayıp durumunda bizden
+      geri getirilemez.
+    </p>
+  </div>
+</section>
+
+<section id="toplanmayan">
+  <h2><span class="numara">3.</span>Toplamadığımız veriler</h2>
+  <p>Aşağıdakilerin hiçbiri uygulamalarımız tarafından toplanmaz, saklanmaz veya iletilmez:</p>
+  <ul>
+    <li>Ad, soyad, e-posta, telefon numarası veya benzeri kimlik bilgisi</li>
+    <li>Konum bilgisi</li>
+    <li>Kişi listesi, takvim, çağrı geçmişi</li>
+    <li>Kamera, mikrofon veya fotoğraf erişimi</li>
+    <li>Cihazdaki diğer dosyalar (yalnızca sizin seçtiğiniz yedek dosyası okunur/yazılır)</li>
+    <li>Uygulamayı nasıl kullandığınıza dair kullanım verisi</li>
+    <li>Çökme raporları ve kullanım analitiği (uygulamalarımızda analitik aracı bulunmaz)</li>
+  </ul>
+  <p>
+    Hiçbir uygulamamızda çerez, izleme (tracking) teknolojisi, profilleme veya
+    reklam amaçlı kullanıcı profili oluşturma yoktur.
+  </p>
+</section>
+
+<section id="reklam">
+  <h2><span class="numara">4.</span>Reklamlar ve Google AdMob</h2>
+  <p>
+    Ücretsiz uygulamalarımızın geliştirilmesini desteklemek için uygulama
+    ekranlarında reklam gösterilebilir. Reklamlar
+    <strong>Google Mobile Ads (AdMob)</strong> yazılım geliştirme kiti aracılığıyla
+    sunulur.
+  </p>
+  <p>Bu kapsamda Google, reklamları sunmak, sınırlamak ve ölçmek için şunları işleyebilir:</p>
+  <ul>
+    <li>Cihazınızın <strong>reklam kimliği (Advertising ID)</strong></li>
+    <li>IP adresi ve yaklaşık konum (şehir düzeyinde)</li>
+    <li>Cihaz ve uygulama bilgileri (işletim sistemi sürümü, uygulama sürümü, dil)</li>
+    <li>Reklamla etkileşim bilgileri (gösterim, tıklama)</li>
+  </ul>
+  <div class="kutu">
+    <p>
+      <strong>Bu veriler bize ulaşmaz.</strong> Google, verileri kendi politikaları
+      uyarınca işler:
+      <a href="https://policies.google.com/technologies/ads" rel="noopener">Google reklam teknolojileri</a>
+      ·
+      <a href="https://policies.google.com/privacy" rel="noopener">Google Gizlilik Politikası</a>
+    </p>
+  </div>
+  <p>
+    Reklamsız kullanım sunan bir uygulamada, o seçeneği kullandığınızda reklam
+    isteği gönderilmez. Bir uygulamada reklamsız seçenek varsa bu, uygulamanın
+    kendi sayfasında belirtilir.
+  </p>
+</section>
+
+<section id="onay">
+  <h2><span class="numara">5.</span>Reklam tercihleri ve bölgesel onay</h2>
+  <p>
+    Yasal olarak gerekli olan bölgelerde (Avrupa Ekonomik Alanı, Birleşik Krallık,
+    İsviçre) reklam gösterilmeden önce Google'ın onay ekranı (UMP) sunulur. Onay
+    verilmeden <strong>hiçbir reklam isteği gönderilmez</strong>; onay vermemeniz
+    hâlinde reklam gösterilmez ve uygulamanın işlevleri kullanılmaya devam eder.
+  </p>
+  <h3>Reklam kişiselleştirmesini kapatmak</h3>
+  <p>
+    Android'de <em>Ayarlar → Google → Reklamlar</em> yolundan reklam kimliğinizi
+    sıfırlayabilir veya silebilirsiniz. Kimliği sildiğinizde size yine reklam
+    gösterilir, ancak kişiselleştirme sınırlanır. Uygulama içindeki onay
+    tercihinizi de uygulamanın gizlilik ayarlarından istediğiniz zaman
+    değiştirebilirsiniz.
+  </p>
+</section>
+
+<section id="ucuncu">
+  <h2><span class="numara">6.</span>Diğer üçüncü taraflar</h2>
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>Taraf</th><th>Ne için</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google AdMob</td>
+          <td>Ücretsiz uygulamalarda reklamların sunulması; veri işleme Google'ın kendi politikalarına tabidir.</td>
+        </tr>
+        <tr>
+          <td>Google Play</td>
+          <td>Uygulamanın dağıtımı, güncellemeleri ve varsa uygulama içi satın almalar. Ödeme bilgileriniz Google tarafından işlenir; kart bilgileri <strong>hiçbir zaman</strong> bize ulaşmaz.</td>
+        </tr>
+        <tr>
+          <td>İşletim sistemi servisleri</td>
+          <td>Android'in kendi yedekleme servisi, cihaz ayarlarınıza göre uygulama verilerini hesabınıza yedekleyebilir. Bu, işletim sisteminin davranışıdır ve sizin ayarlarınızdan yönetilir.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Bu üçünün dışında verinizi alan bir hizmet, reklam ağı veya veri simsarı
+    kullanılmaz. Hiçbir veri satılmaz.
+  </p>
+</section>
+
+<section id="izinler">
+  <h2><span class="numara">7.</span>İzinler</h2>
+  <p>
+    Uygulamalarımız yalnızca bir özelliğin çalışması için gereken izni ister;
+    hiçbiri veri toplamak amacıyla kullanılmaz. Örnekler: bildirim izni yalnızca
+    hatırlatıcı için, titreşim yalnızca dokunsal geri bildirim için, internet
+    izni yalnızca reklamların yüklenmesi için istenir. Hangi uygulamanın hangi
+    izni hangi amaçla istediği, o uygulamanın kendi gizlilik politikasında
+    tablo hâlinde listelenir.
+  </p>
+  <p>
+    Bir izni reddetmeniz uygulamayı kullanılamaz hâle getirmez: yalnızca o izne
+    bağlı özellik çalışmaz, geri kalanı normal çalışır.
+  </p>
+</section>
+
+<section id="cevrimici">
+  <h2><span class="numara">8.</span>Gelecekteki çevrimiçi özellikler</h2>
+  <p>
+    Uygulamalarımız bugün çevrimdışı çalışacak şekilde tasarlanmıştır. İleride
+    hesap gerektiren, cihazlar arasında eşitleme yapan veya veriyi sunucuda
+    tutan bir özellik eklenirse şu üç kural geçerli olur:
+  </p>
+  <ul>
+    <li>
+      <strong>İsteğe bağlıdır.</strong> Böyle bir özellik <em>siz açmadıkça</em>
+      çalışmaz; uygulamanın geri kalanı hesapsız ve çevrimdışı kullanılmaya devam eder.
+    </li>
+    <li>
+      <strong>Açıkça söylenir.</strong> Hangi verinin, nerede saklanacağı ve ne
+      kadar süre tutulacağı — özellik yayımlanmadan <strong>önce</strong> —
+      uygulamanın kendi gizlilik politikasında yazılı olur.
+    </li>
+    <li>
+      <strong>Vazgeçmesi kolaydır.</strong> Özelliği kapatabilir ve sunucudaki
+      verinizin silinmesini talep edebilirsiniz.
+    </li>
+  </ul>
+  <p>
+    Kısacası: verinizi toplayan bir özellik, sessizce eklenmez. Bugünkü sözümüz
+    (“verin cihazında kalır”) bir özellik eklendiğinde <em>değiştirilmez</em>,
+    yalnızca o özellik için ve sizin onayınızla istisna tanınır.
+  </p>
+</section>
+
+<section id="paylasma">
+  <h2><span class="numara">9.</span>Paylaşma ve dışa aktarma</h2>
+  <p>
+    Uygulamalardaki paylaşma ve dışa aktarma işlemleri <strong>yalnızca siz
+    dokunduğunuzda</strong> çalışır. Paylaşımı başlattığınızda içerik, seçtiğiniz
+    uygulamaya (mesajlaşma, e-posta, bulut vb.) işletim sistemi aracılığıyla
+    iletilir. Oluşturulan dosyayı nereye kaydettiğiniz ve kiminle paylaştığınız
+    tamamen sizin kontrolünüzdedir; uygulama bu içeriği kendiliğinden hiçbir yere
+    göndermez.
+  </p>
+</section>
+
+<section id="cocuk">
+  <h2><span class="numara">10.</span>Çocukların gizliliği</h2>
+  <p>
+    Uygulamalarımız 13 yaş altı çocuklardan bilerek kişisel veri toplamaz; zaten
+    hiçbir kullanıcıdan kişisel veri toplamayız. Uygulama içinde oluşan veriler
+    yalnızca cihazda tutulduğu için çocuklara ait bir veri tarafımızda bulunmaz.
+    Ebeveynler cihazdaki verileri uygulama ayarlarından veya uygulamayı
+    kaldırarak silebilir.
+  </p>
+</section>
+
+<section id="silme">
+  <h2><span class="numara">11.</span>Verilerinizi silme</h2>
+  <p>Verileriniz bizde değil cihazınızda olduğu için silme tamamen sizin elinizdedir:</p>
+  <ul>
+    <li><strong>Uygulama içinden:</strong> ayarlardaki veri sıfırlama / tüm verileri sil seçenekleri.</li>
+    <li><strong>Android ayarlarından:</strong> <em>Ayarlar → Uygulamalar → (uygulama) → Depolama → Verileri temizle</em>.</li>
+    <li><strong>Tamamen kaldırma:</strong> uygulamayı sildiğinizde uygulamaya ait tüm yerel veriler silinir. Yedek dosyalarını sizin oluşturduğunuz konumlardan ayrıca silmeniz gerekir.</li>
+  </ul>
+  <p>
+    Bizden veri silme talebinde bulunmanıza gerek yoktur, çünkü tarafımızda
+    saklanan bir kopya bulunmaz. Yine de sorularınız için §13'ten bize
+    ulaşabilirsiniz.
+  </p>
+</section>
+
+<section id="degisiklik">
+  <h2><span class="numara">12.</span>Politika değişiklikleri</h2>
+  <p>
+    Bu politika; yeni bir uygulama yayımlandığında, var olan bir uygulamaya veri
+    uygulamalarını etkileyen bir özellik eklendiğinde veya yasal gereklilikler
+    değiştiğinde güncellenir. Güncel sürüm her zaman bu sayfada yayımlanır ve
+    yukarıdaki <strong>“Son güncelleme”</strong> tarihi değişir. Kullanıcıyı
+    doğrudan etkileyen önemli değişikliklerde uygulama içinde bilgilendirme
+    yapılır.
+  </p>
+</section>
+
+<section id="iletisim">
+  <h2><span class="numara">13.</span>İletişim ve uygulama politikaları</h2>
+  <p>
+    Soru, talep veya şikâyetleriniz için:
+    <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a>
+  </p>
+  <p>Yayındaki uygulamaların kendi gizlilik politikaları:</p>
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>Uygulama</th><th>Politika</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tesbihat<br><code>com.hamit.tesbihat</code></td>
+          <td><a href="https://hamit4sl4n.github.io/gizlilik/">hamit4sl4n.github.io/gizlilik/</a> — cihazda tutulan veriler, izinler, AdMob ve onay akışının uygulamaya özel ayrıntıları.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="english">
+  <h2><span class="numara">14.</span>English summary</h2>
+  <p>
+    This is the studio-wide privacy policy of <strong>4SL4N Studio</strong>. It
+    applies to every Android app we publish; app-specific details are in each
+    app's own policy, listed in section 13.
+  </p>
+  <ul>
+    <li>
+      <strong>We do not collect personal data.</strong> Our apps have no accounts,
+      no sign-in, no analytics SDK and no server. Everything you create in an app
+      (records, preferences, progress) stays on your device.
+    </li>
+    <li>
+      <strong>Advertising.</strong> Free apps may show ads through Google Mobile
+      Ads (AdMob). Google may process your device's advertising ID, IP address,
+      device information and ad interactions under its own
+      <a href="https://policies.google.com/privacy" rel="noopener">privacy policy</a>.
+      That data is not accessible to us. You can reset or delete your advertising
+      ID in <em>Android Settings → Google → Ads</em>. Where legally required, an
+      in-app consent form is shown and no ad request is sent without consent.
+    </li>
+    <li>
+      <strong>Third parties</strong> are limited to Google AdMob (ads) and Google
+      Play (distribution and any in-app purchases — we never receive your card
+      details). Your data is never sold.
+    </li>
+    <li>
+      <strong>Permissions</strong> are requested only for the feature that needs
+      them, and denying one only disables that feature.
+    </li>
+    <li>
+      <strong>Future online features</strong> would be optional, clearly
+      described in the app's own policy before release, and possible to turn off.
+      A feature that collects data is never added silently.
+    </li>
+    <li>
+      <strong>Deleting your data:</strong> use the in-app reset, Android's app
+      storage settings, or uninstall the app — since we hold no copy, no
+      data-removal request to us is necessary.
+    </li>
+  </ul>
+  <p>Contact: <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    <strong>4SL4N Studio</strong> · Gizlilik Politikası · Son güncelleme: 23 Eylül 2026
+  </p>
+  <p>
+    Bu sayfa stüdyo geneli ilkeleri toplar; uygulamaya özel ayrıntılar için §13'teki
+    uygulama politikalarına bakın.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
