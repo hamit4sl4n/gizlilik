@@ -77,8 +77,14 @@
     color:var(--silik);border:0;padding:0;
   }
   nav.icindekiler ol{margin:0;padding-left:22px;columns:2;column-gap:30px}
-  nav.icindekiler li{margin:3px 0;font-size:.94rem}
-  nav.icindekiler a{color:var(--solgun);text-decoration:none;border-bottom:1px solid transparent}
+  /* Dokunma hedefi (WCAG 2.2 SC 2.5.8): bağlantılar 17–18 px yükseklikteydi.
+     Hedef 24 px'e çıkar, metin kutunun dibinde kalır (alt çizgi oynamaz) ve
+     satır aralığı sıfırlanır — böylece komşu hedefler üst üste binmez. */
+  nav.icindekiler li{margin:0;font-size:.94rem}
+  nav.icindekiler a{
+    display:inline-flex;align-items:flex-end;min-height:26px;
+    color:var(--solgun);text-decoration:none;border-bottom:1px solid transparent;
+  }
   nav.icindekiler a:hover{color:var(--altin);border-bottom-color:rgba(255,215,0,.4)}
 
   section{margin-top:44px;scroll-margin-top:20px}
@@ -137,7 +143,10 @@
     margin-top:60px;padding-top:26px;border-top:1px solid var(--kenarlik);
     color:var(--silik);font-size:.88rem;
   }
-  footer a{color:var(--solgun)}
+  /* Altbilgi bağlantıları da satır yüksekliğindeydi. `inline-flex` burada satır
+     kaydırır; satır içi kutuya yalnız YUKARI dolgu vermek hedefi büyütür, satır
+     düzenini ve alt çizginin yerini değiştirmez. */
+  footer a{padding-block-start:9px;color:var(--solgun)}
 
   @media (max-width:640px){
     body{font-size:16px}
