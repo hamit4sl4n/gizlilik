@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik Politikası — Last Stand</title>
+<meta name="description" content="Last Stand (idle defense) uygulamasının gizlilik politikası: hesap yok, kişisel veri toplanmaz, oyun ilerlemesi yalnızca cihazda kalır. Reklam kimliği (AdMob) ve isimsiz kullanım olayları (Firebase Analytics) dışında veri toplanmaz.">
+<meta name="theme-color" content="#0B1218">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hamit4sl4n.github.io/gizlilik/laststand/">
+<!--
+  ÜRETİLMİŞTİR — elle düzenlemeyin.
+  Kaynak: last_stand deposu docs/privacy-policy.md
+  Üretim: python3 design/publish_privacy.py
+  Adresin tek kaynağı: lib/config/game_config.dart → privacyPolicyUrl
+-->
+<style>
+  :root{
+    --vurgu:#4FC3F7; --altin:#FFD54F;
+    --zemin:#0B1218; --yuzey:#1B222D; --kenarlik:#2A3B52;
+    --metin:#EAF2F6; --solgun:#9DB2BF;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; padding:0;
+    background:var(--zemin);
+    background-image:radial-gradient(1100px 520px at 50% -12%, #16222E 0%, rgba(11,18,24,0) 68%);
+    color:var(--metin);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    line-height:1.65;
+  }
+  main{
+    max-width:760px; margin:0 auto; padding:40px 20px 72px;
+  }
+  header{
+    border-bottom:2px solid var(--kenarlik);
+    padding-bottom:22px; margin-bottom:30px;
+  }
+  h1{
+    font-size:1.9rem; line-height:1.25; margin:0 0 12px;
+    letter-spacing:.2px;
+  }
+  .meta{color:var(--solgun); font-size:.92rem; margin:2px 0;}
+  .meta strong{color:var(--metin);}
+  h2{
+    font-size:1.22rem; margin:38px 0 12px;
+    color:var(--vurgu); letter-spacing:.3px;
+    border-left:3px solid var(--vurgu); padding-left:12px;
+  }
+  p{margin:12px 0;}
+  ul{margin:12px 0; padding-left:22px;}
+  li{margin:6px 0;}
+  a{color:var(--vurgu); text-decoration:none; border-bottom:1px solid rgba(79,195,247,.35);}
+  a:hover{border-bottom-color:var(--vurgu);}
+  code{
+    background:var(--yuzey); border:1px solid var(--kenarlik);
+    border-radius:5px; padding:1px 6px; font-size:.88em;
+  }
+  pre{
+    background:var(--yuzey); border:1px solid var(--kenarlik);
+    border-radius:10px; padding:14px 16px; overflow-x:auto;
+  }
+  pre code{background:none; border:none; padding:0;}
+  blockquote{
+    margin:18px 0; padding:12px 18px;
+    background:var(--yuzey); border-left:3px solid var(--altin);
+    border-radius:0 10px 10px 0; color:var(--solgun);
+  }
+  blockquote p{margin:0;}
+  hr{border:none; border-top:1px solid var(--kenarlik); margin:32px 0;}
+  footer{
+    margin-top:48px; padding-top:18px; border-top:1px solid var(--kenarlik);
+    color:var(--solgun); font-size:.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Gizlilik Politikası — Last Stand</h1>
+  <!-- Künye (uygulama, geliştirici, tarih, adres) kaynaktan gelir: metnin
+       başındaki **etiket:** satırları şablon yerine orada durur, tek kaynak
+       dağılmasın diye buraya kopyalanmaz. -->
+</header>
+<p class="meta"><strong>Son güncelleme: 28 Eylül 2026</strong></p>
+<p class="meta"><strong>Uygulama: Last Stand</strong> (<code>com.wfuzzgames.laststand</code>)</p>
+<p class="meta"><strong>Geliştirici: Wfuzz Games — <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></strong></p>
+<p class="meta"><strong>Yayın adresi: <a href="https://hamit4sl4n.github.io/gizlilik/laststand/">https://hamit4sl4n.github.io/gizlilik/laststand/</a></strong></p>
+<blockquote><p>Bu dosya <strong>tek kaynaktır</strong>: <code>design/publish_privacy.py</code> bu markdown'dan yayınlanmış HTML sayfasını üretir ve <code>hamit4sl4n/gizlilik</code> deposuna gönderir (GitHub Pages — ücretsiz planda yalnız public depolarda çalıştığı için sayfalar kaynak koddan ayrı bu depoda durur). Oyunun içindeki adres <code>GameConfig.privacyPolicyUrl</code> sabitinden gelir, Play Console'a da yukarıdaki adres girilir; üçü aynı değilse <code>test/privacy_policy_test.dart</code> kırmızı olur. Metnin geri kalanı uygulamanın gerçek davranışını anlatır: AdMob, Firebase Analytics, cihazda kalan kayıt, hesap yok.</p></blockquote>
+<h2>Özet</h2>
+<p>Last Stand bir hesap açmanızı istemez, adınızı/e-postanızı/telefonunuzu sormaz ve oyun ilerlemenizi <strong>yalnızca cihazınızda</strong> saklar. Toplanan iki şey vardır: reklamları gösterebilmek için Google AdMob'un kullandığı reklam kimliği ve oyunun nerede zorlandığını anlamak için tutulan <strong>isimsiz</strong> kullanım olayları.</p>
+<h2>1. Cihazda kalan veriler</h2>
+<p>Oyun ilerlemesi (seviye, altın, yükseltmeler, kodiks, başarımlar, günlük ödül serisi) cihazın yerel deposunda tutulur. Bu veriler bize gönderilmez, hesabınıza bağlanmaz ve uygulamayı sildiğinizde cihazdan silinir. Sunucu tarafında tutulan bir oyuncu kaydı <strong>yoktur</strong>.</p>
+<h2>2. Reklamlar (Google AdMob)</h2>
+<p>Uygulama, ödüllü reklamlar aracılığıyla gelir elde eder. Reklamlar Google AdMob tarafından sunulur ve AdMob; reklam kimliği (Android Advertising ID), IP adresi, cihaz modeli ve işletim sistemi sürümü gibi bilgileri kendi politikaları kapsamında işler.</p>
+<ul><li>Google'ın gizlilik politikası: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li><li>Reklam kimliğinizi sıfırlamak veya kişiselleştirilmiş reklamları kapatmak</li></ul>
+<p>için: <strong>Ayarlar → Google → Reklamlar</strong>.</p>
+<ul><li>Kişiselleştirilmiş reklamlar için onay, ilgili bölgelerde gösterilir.</li></ul>
+<h2>3. Kullanım ölçümü (Firebase Analytics)</h2>
+<p>Hangi seviyede oyuncuların takıldığını görmek için Firebase Analytics ile olay sayıyoruz. Gönderilen olaylar yalnızca oyun içi olaylardır: oturum başlangıcı, ulaşılan seviye/dalga, seçilen perk, satın alınan yükseltme, ölüm, reklam isteği/gösterimi.</p>
+<p>Bu olaylarda <strong>kişisel veri yoktur</strong>: isim, e-posta, telefon, kişi listesi, konum, fotoğraf veya serbest metin toplanmaz. Firebase Analytics cihaz başına rastgele bir uygulama örneği kimliği kullanır; bu kimlik sizi tanımlamaz.</p>
+<ul><li>Firebase gizlilik politikası: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li></ul>
+<h2>4. Toplamadığımız şeyler</h2>
+<ul><li>Hesap, isim, e-posta, telefon numarası</li><li>Rehber, SMS, arama kaydı</li><li>Konum</li><li>Kamera, mikrofon, fotoğraflar</li><li>Sağlık verisi, finansal bilgi</li><li>Çocuklardan bilerek veri (uygulama çocuklara yönelik değildir)</li></ul>
+<h2>5. İnternet izni neden var</h2>
+<p>Yalnızca reklamları yüklemek ve isimsiz kullanım olaylarını göndermek için. Oyun çevrimdışı oynanabilir; internet yoksa yalnızca reklam ve çevrimdışı gelir özelliği devre dışı kalır.</p>
+<h2>6. Verilerin silinmesi</h2>
+<p>Cihazdaki tüm oyun verisi uygulamayı silerek ya da <strong>Ayarlar → Uygulamalar → Last Stand → Depolama → Verileri temizle</strong> yolundan silinebilir. Analytics tarafındaki isimsiz olayların silinmesini talep etmek için <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a> adresine yazabilirsiniz; talebiniz 30 gün içinde yanıtlanır.</p>
+<h2>7. Çocuklar</h2>
+<p>Uygulama 13 yaş altı çocuklara yönelik değildir ve bilerek çocuklardan veri toplamaz. Böyle bir durumun farkına varırsanız bize bildirin, veriyi sileriz.</p>
+<h2>8. Değişiklikler</h2>
+<p>Bu politika güncellendiğinde "son güncelleme" tarihi değişir ve önemli değişiklikler uygulama içinde duyurulur.</p>
+<h2>9. İletişim</h2>
+<p><a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
+<h2>10. English summary</h2>
+<p>Last Stand never asks for an account, name, e-mail or phone number and keeps your game progress <strong>only on your device</strong>. Two things are collected: the advertising identifier Google AdMob uses to serve rewarded ads, and <strong>anonymous</strong> in-game usage events (Firebase Analytics: session start, reached level/wave, chosen perk, purchased upgrade, deaths, ad requests and impressions). No personal data — name, e-mail, phone, contacts, location, photos or free text — is collected. Deleting the app removes the local save; to delete the anonymous analytics events, write to <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a> and your request is answered within 30 days. The app is not directed at children under 13. Contact: <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a>.</p>
+<footer>
+  <p>Bu sayfa Last Stand için otomatik üretilmiştir — kaynağı
+  <code>docs/privacy-policy.md</code>. Sorular için:
+  <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
+</footer>
+</main>
+</body>
+</html>
