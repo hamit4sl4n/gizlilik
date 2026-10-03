@@ -83,7 +83,7 @@
 <p class="meta"><strong>Geliştirici: Wfuzz Games — <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></strong></p>
 <p class="meta"><strong>Yayın adresi: <a href="https://hamit4sl4n.github.io/gizlilik/laststand/">https://hamit4sl4n.github.io/gizlilik/laststand/</a></strong></p>
 <h2>Özet</h2>
-<p>Last Stand bir hesap açmanızı istemez, adınızı/e-postanızı/telefonunuzu sormaz ve oyun ilerlemenizi <strong>yalnızca cihazınızda</strong> saklar. Toplanan iki şey vardır: reklamları gösterebilmek için Google AdMob'un kullandığı reklam kimliği ve oyunun nerede zorlandığını anlamak için tutulan <strong>isimsiz</strong> kullanım olayları.</p>
+<p>Last Stand bir hesap açmanızı istemez, adınızı/e-postanızı/telefonunuzu sormaz ve oyun ilerlemenizi <strong>yalnızca cihazınızda</strong> saklar. Toplanan iki şey vardır: reklamları gösterebilmek için Google AdMob'un kullandığı reklam kimliği, oyunun nerede zorlandığını anlamak için tutulan <strong>isimsiz</strong> kullanım olayları ve oyunun beklenmedik şekilde kapandığında anlaşılmasını sağlayan <strong>isimsiz</strong> çökme kayıtları.</p>
 <h2>1. Cihazda kalan veriler</h2>
 <p>Oyun ilerlemesi (seviye, altın, yükseltmeler, kodiks, başarımlar, günlük ödül serisi) cihazın yerel deposunda tutulur. Bu veriler bize gönderilmez, hesabınıza bağlanmaz ve uygulamayı sildiğinizde cihazdan silinir. Sunucu tarafında tutulan bir oyuncu kaydı <strong>yoktur</strong>.</p>
 <h2>2. Reklamlar (Google AdMob)</h2>
@@ -95,20 +95,23 @@
 <p>Hangi seviyede oyuncuların takıldığını görmek için Firebase Analytics ile olay sayıyoruz. Gönderilen olaylar yalnızca oyun içi olaylardır: oturum başlangıcı, ulaşılan seviye/dalga, seçilen perk, satın alınan yükseltme, ölüm, reklam isteği/gösterimi.</p>
 <p>Bu olaylarda <strong>kişisel veri yoktur</strong>: isim, e-posta, telefon, kişi listesi, konum, fotoğraf veya serbest metin toplanmaz. Firebase Analytics cihaz başına rastgele bir uygulama örneği kimliği kullanır; bu kimlik sizi tanımlamaz.</p>
 <ul><li>Firebase gizlilik politikası: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li></ul>
-<h2>4. Toplamadığımız şeyler</h2>
+<h2>4. Çökme kayıtları (Firebase Crashlytics)</h2>
+<p>Oyun beklenmedik şekilde kapandığında (çökme, yakalanmayan hata) Firebase Crashlytics bir çökme kaydı tutar: hata yığını, cihaz modeli, işletim sistemi sürümü ve oyun sürümü. Amaç tek: hangi cihazda hangi yoldan çöktüğünü görüp düzeltmek. Kayıtta isim, e-posta, telefon, konum veya oyun içeriği bulunmaz; çökme anındaki oyun ilerlemeniz kayda eklenmez.</p>
+<p>Bu kayıtlar <strong>yalnızca yayın (release) derlemelerinde</strong> toplanır: geliştirme derlemeleri (debug/profile) rapor yollamaz.</p>
+<h2>5. Toplamadığımız şeyler</h2>
 <ul><li>Hesap, isim, e-posta, telefon numarası</li><li>Rehber, SMS, arama kaydı</li><li>Konum</li><li>Kamera, mikrofon, fotoğraflar</li><li>Sağlık verisi, finansal bilgi</li><li>Çocuklardan bilerek veri (uygulama çocuklara yönelik değildir)</li></ul>
-<h2>5. İnternet izni neden var</h2>
+<h2>6. İnternet izni neden var</h2>
 <p>Yalnızca reklamları yüklemek ve isimsiz kullanım olaylarını göndermek için. Oyun çevrimdışı oynanabilir; internet yoksa yalnızca reklam ve çevrimdışı gelir özelliği devre dışı kalır.</p>
-<h2>6. Verilerin silinmesi</h2>
+<h2>7. Verilerin silinmesi</h2>
 <p>Cihazdaki tüm oyun verisi uygulamayı silerek ya da <strong>Ayarlar → Uygulamalar → Last Stand → Depolama → Verileri temizle</strong> yolundan silinebilir. Analytics tarafındaki isimsiz olayların silinmesini talep etmek için <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a> adresine yazabilirsiniz; talebiniz 30 gün içinde yanıtlanır.</p>
-<h2>7. Çocuklar</h2>
+<h2>8. Çocuklar</h2>
 <p>Uygulama 13 yaş altı çocuklara yönelik değildir ve bilerek çocuklardan veri toplamaz. Böyle bir durumun farkına varırsanız bize bildirin, veriyi sileriz.</p>
-<h2>8. Değişiklikler</h2>
+<h2>9. Değişiklikler</h2>
 <p>Bu politika güncellendiğinde "son güncelleme" tarihi değişir ve önemli değişiklikler uygulama içinde duyurulur.</p>
-<h2>9. İletişim</h2>
+<h2>10. İletişim</h2>
 <p><a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
-<h2>10. English summary</h2>
-<p>Last Stand never asks for an account, name, e-mail or phone number and keeps your game progress <strong>only on your device</strong>. Two things are collected: the advertising identifier Google AdMob uses to serve rewarded ads, and <strong>anonymous</strong> in-game usage events (Firebase Analytics: session start, reached level/wave, chosen perk, purchased upgrade, deaths, ad requests and impressions). No personal data — name, e-mail, phone, contacts, location, photos or free text — is collected. Deleting the app removes the local save; to delete the anonymous analytics events, write to <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a> and your request is answered within 30 days. The app is not directed at children under 13. Contact: <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a>.</p>
+<h2>11. English summary</h2>
+<p>Last Stand never asks for an account, name, e-mail or phone number and keeps your game progress <strong>only on your device</strong>. Three things are collected: the advertising identifier Google AdMob uses to serve rewarded ads, <strong>anonymous</strong> in-game usage events (Firebase Analytics: session start, reached level/wave, chosen perk, purchased upgrade, deaths, ad requests and impressions), and <strong>anonymous</strong> crash reports (Firebase Crashlytics: error stack, device model, OS and app version — collected from release builds only). No personal data — name, e-mail, phone, contacts, location, photos or free text — is collected. Deleting the app removes the local save; to delete the anonymous analytics events, write to <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a> and your request is answered within 30 days. The app is not directed at children under 13. Contact: <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a>.</p>
 <footer>
   <p>Sorular ve talepler için:
   <a href="mailto:hamitaslan85@gmail.com">hamitaslan85@gmail.com</a></p>
